@@ -1,0 +1,12 @@
+{
+  "name": "ta2-2023",
+  "version": "1.0.0",
+  "description": "Repositório para a disciplina de \"Tópicos Avançados 2\" do curso BSI",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
