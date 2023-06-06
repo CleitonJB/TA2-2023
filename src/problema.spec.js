@@ -11,7 +11,7 @@ describe('Verificar existência do arquivo de log', () => {
 //* Pessoa passou pela porta (Inserir no registro)
 
 //* Verificar quantas pessoas entraram no bando no período fornecido
-describe('Verificar quantas pessoas entraram no bando', () => {
+describe('Verificar quantas pessoas entraram no banco', () => {
     it('O arquivo deve existir', async () => {
         const entradasNoBranco = new EntradasNoBranco();
 
