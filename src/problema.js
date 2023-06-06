@@ -85,6 +85,41 @@ class EntradasNoBranco {
             });
         });
     }
+
+    getRecordsNumber() {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const records = await this.readAtLogFile();
+                let peoplesCounter = 0;
+
+                await records.forEach(datetime => {
+                    const currentRecord = new Date(datetime).getTime();
+                    
+                    const date = datetime.toString().split(" ")[0];
+                    const firstDate = new Date(`${date} 10:00:00`).getTime();
+                    const lastDate  = new Date(`${date} 16:00:00`).getTime();
+
+                    if(currentRecord >= firstDate && currentRecord <= lastDate) peoplesCounter++;
+                });
+
+                resolve(peoplesCounter);
+            } catch (error) {
+                throw new Error(`Erro ao contar quantidade de registros no período do expediente: ${error}`);
+            }
+        });
+    }
+
+    readAtLogFile() {
+        return new Promise((resolve, reject) => {
+            fs.readFile(this.LOG_FILE_PATH, 'utf8', (error, data) => {
+                if(error) {
+                    throw new Error('Erro ao ler o arquivo: ', error);
+                }
+
+                resolve(data.split('\n'));
+            });
+        });
+    }
 }
 
 module.exports = { EntradasNoBranco };
