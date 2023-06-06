@@ -93,7 +93,8 @@ class EntradasNoBranco {
                 let peoplesCounter = 0;
 
                 await records.forEach(datetime => {
-                    const currentRecord = new Date(datetime).getTime();
+                    //* Remover:  - Abertura da porta OK
+                    const currentRecord = new Date(datetime.split(" - ")[0]).getTime();
                     
                     const date = datetime.toString().split(" ")[0];
                     const firstDate = new Date(`${date} 10:00:00`).getTime();
@@ -102,6 +103,7 @@ class EntradasNoBranco {
                     if(currentRecord >= firstDate && currentRecord <= lastDate) peoplesCounter++;
                 });
 
+                console.log('Contador: ', peoplesCounter);
                 resolve(peoplesCounter);
             } catch (error) {
                 throw new Error(`Erro ao contar quantidade de registros no período do expediente: ${error}`);
